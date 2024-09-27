@@ -19,7 +19,6 @@ class HomeService {
       "city": "Cidade B",
       "state": "Estado B"
     },
-
   ];
 
   // Método para obter a lista de endereços
@@ -27,5 +26,13 @@ class HomeService {
     // Simula um atraso de rede
     await Future.delayed(Duration(seconds: 2));
     return _addressHistoryData.map((data) => AddressModel.fromJsonLocal(data)).toList();
+  }
+
+  // Método para obter um endereço pelo CEP
+  Future<AddressModel> getAddressByCep(String cep) async {
+    // Simula um atraso de rede
+    await Future.delayed(Duration(seconds: 2));
+    final data = _addressHistoryData.firstWhere((element) => element['cep'] == cep, orElse: () => throw Exception('CEP não encontrado'));
+    return AddressModel.fromJsonLocal(data);
   }
 }
