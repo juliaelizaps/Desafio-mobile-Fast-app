@@ -4,7 +4,6 @@ import 'package:mobx/mobx.dart';
 
 import '../controller/home_controller.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -21,16 +20,22 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    //_controller.loadData();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    //reactsToError();
+    //reactsToRouterError();
   }
 
   @override
   void dispose() {
     super.dispose();
+    searchController.dispose();
+    errorReactDisposer();
+    errorRouteReactionDisposer();
   }
 
   @override
