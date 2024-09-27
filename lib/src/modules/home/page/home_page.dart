@@ -2,6 +2,8 @@ import 'package:fast_location/src/shared/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
+import '../controller/home_controller.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //final HomeController _controller = HomeController();
+  final HomeController _controller = HomeController();
   TextEditingController searchController = TextEditingController();
   late ReactionDisposer errorReactDisposer;
   late ReactionDisposer errorRouteReactionDisposer;
