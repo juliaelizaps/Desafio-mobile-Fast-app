@@ -1,56 +1,41 @@
 import 'package:mobx/mobx.dart';
-import '../model/address_model.dart';
-import '../service/address_service.dart';
-
+import 'package:fast_location/src/modules/home/model/address_model.dart';
+import 'package:fast_location/src/modules/home/service/home_service.dart';
 
 part 'home_controller.g.dart';
 
-class HomeController = _HomeControllerBase with _$HomeController;
+class HomeController = _HomeController with _$HomeController;
 
-abstract class _HomeControllerBase with Store {
-  final AddressService addressService;
-
-  _HomeControllerBase(this.addressService);
-
-  @observable
-  String cep = '';
-
-  @observable
-  AddressModel? address;
+abstract class _HomeController with Store {
+  final HomeService _service = HomeService();
 
   @observable
   bool isLoading = false;
 
   @observable
-  String errorMessage = '';
+  String? address;
+
+  @observable
+  List<String> searchHistory = [];
 
   @action
-  void setCep(String value) {
-    cep = value;
-  }
-
-  @action
-  Future<void> fetchAddress() async {
+  Future<void> buscarEndereco(String cep) async {
     isLoading = true;
-    errorMessage = '';
     try {
-      final result = await addressService.getAddressByCep(cep);
-      if (result != null) {
-        address = result;
-      } else {
-        errorMessage = 'Endereço não encontrado.';
-      }
+      // Simulação de busca de endereço
+      AddressModel endereco = await _service.getAddressByCep(cep);
+      address = '${endereco.publicPlace}, ${endereco.neighborhood}, ${endereco.city}, ${endereco.state}';
+      searchHistory.add(address!);
     } catch (e) {
-      errorMessage = 'Erro ao buscar endereço.';
+      // Trate o erro adequadamente
+      address = null;
     } finally {
       isLoading = false;
     }
   }
 
   @action
-  void reset() {
-    address = null;
-    errorMessage = '';
+  void abrirGoogleMaps() {
+    // Implementação para abrir o Google Maps com o endereço
   }
 }
-

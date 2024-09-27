@@ -1,53 +1,47 @@
 class AddressModel {
-  final String cep;
-  final String logradouro;
-  final String complemento;
-  final String bairro;
-  final String localidade;
-  final String uf;
-  final String ibge;
-  final String gia;
-  final String ddd;
-  final String siafi;
+  late String cep;
+  late String publicPlace;
+  late String? complement;
+  late String neighborhood;
+  late String city;
+  late String state;
 
   AddressModel({
     required this.cep,
-    required this.logradouro,
-    required this.complemento,
-    required this.bairro,
-    required this.localidade,
-    required this.uf,
-    required this.ibge,
-    required this.gia,
-    required this.ddd,
-    required this.siafi,
+    required this.publicPlace,
+    required this.complement,
+    required this.neighborhood,
+    required this.city,
+    required this.state,
   });
 
-  factory AddressModel.fromJson(Map<String, dynamic> json) {
-    return AddressModel(
-      cep: json['cep'] ?? '',
-      logradouro: json['logradouro'] ?? '',
-      complemento: json['complemento'] ?? '',
-      bairro: json['bairro'] ?? '',
-      localidade: json['localidade'] ?? '',
-      uf: json['uf'] ?? '',
-      ibge: json['ibge'] ?? '',
-      gia: json['gia'] ?? '',
-      ddd: json['ddd'] ?? '',
-      siafi: json['siafi'] ?? '',
-    );
+  AddressModel.fromJson(Map<String, dynamic> json) {
+    cep = json["cep"];
+    publicPlace = json["logradouro"];
+    complement = json["complemento"] ?? '';
+    neighborhood = json["bairro"];
+    city = json["localidade"];
+    state = json["uf"];
   }
 
-  Map<String, dynamic> toJson() => {
-    'cep': cep,
-    'logradouro': logradouro,
-    'complemento': complemento,
-    'bairro': bairro,
-    'localidade': localidade,
-    'uf': uf,
-    'ibge': ibge,
-    'gia': gia,
-    'ddd': ddd,
-    'siafi': siafi,
-  };
+  AddressModel.fromJsonLocal(Map<String, dynamic> json) {
+    cep = json["cep"];
+    publicPlace = json["publicPlace"];
+    complement = json["complement"] ?? '';
+    neighborhood = json["neighborhood"];
+    city = json["city"];
+    state = json["state"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json["cep"] = cep;
+    json["publicPlace"] = publicPlace;
+    json["complement"] = complement;
+    json["neighborhood"] = neighborhood;
+    json["city"] = city;
+    json["state"] = state;
+
+    return json;
+  }
 }
