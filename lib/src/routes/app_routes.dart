@@ -1,11 +1,3 @@
-class AppRoutes {
-  static const String home = '/home';
-  static const String history = '/history';
-  static const String initial = '/';
-}
-
-
-/*
 import 'package:flutter/material.dart';
 import '../modules/initial/page/initial_page.dart';
 import '../modules/home/page/home_page.dart';
@@ -24,4 +16,3 @@ class AppRoutes {
     Routes.history: (context) => HistoryPage(),
   };
 }
-*/
