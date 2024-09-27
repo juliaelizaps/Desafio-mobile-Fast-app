@@ -1,104 +1,41 @@
+import 'package:fast_location/src/shared/colors/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import '../controller/home_controller.dart';
-import '../components/address_list_component.dart';
-import '../components/last_address_component.dart';
-import '../components/empty_search_component.dart';
-import '../../../routes/app_routes.dart';
-import '../service/address_service.dart';
-import '../repositories/api_repository.dart';
-import '../repositories/local_repository.dart';
 import 'package:mobx/mobx.dart';
-import 'package:map_launcher/map_launcher.dart';
-import 'package:geocoding/geocoding.dart';
+
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  late HomeController controller;
+  //final HomeController _controller = HomeController();
+  TextEditingController searchController = TextEditingController();
+  late ReactionDisposer errorReactDisposer;
+  late ReactionDisposer errorRouteReactionDisposer;
 
   @override
   void initState() {
     super.initState();
-    controller = HomeController(AddressService(
-      apiRepository: ApiRepository(),
-      localRepository: LocalRepository(),
-    ));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('FastLocation'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.history),
-            onPressed: () {
-              Navigator.pushNamed(context, Routes.history);
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Digite o CEP',
-                border: OutlineInputBorder(),
-              ),
-              keyboardType: TextInputType.number,
-              onChanged: controller.setCep,
-            ),
-            SizedBox(height: 16),
-            Observer(
-              builder: (_) {
-                if (controller.isLoading) {
-                  return CircularProgressIndicator();
-                } else if (controller.errorMessage.isNotEmpty) {
-                  return Text(
-                    controller.errorMessage,
-                    style: TextStyle(color: Colors.red),
-                  );
-                } else if (controller.address != null) {
-                  return LastAddressComponent(
-                    address: controller.address!,
-                    onRoute: () async {
-                      // Obter coordenadas do endereço
-                      List<Location> locations = await locationFromAddress(
-                          '${controller.address!.logradouro}, ${controller.address!.localidade}');
-                      if (locations.isNotEmpty) {
-                        final location = locations.first;
-                        final availableMaps = await MapLauncher.installedMaps;
-                        if (availableMaps.isNotEmpty) {
-                          availableMaps.first.showMarker(
-                            coords: Coords(location.latitude, location.longitude),
-                            title: controller.address!.logradouro,
-                          );
-                        }
-                      }
-                    },
-                  );
-                } else {
-                  return EmptySearchComponent();
-                }
-              },
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                controller.fetchAddress();
-              },
-              child: Text('Consultar'),
-            ),
-          ],
-        ),
-      ),
+    return const Scaffold(
+      backgroundColor: AppColors.appPageBackground,
+      body: Text('Home Page'),
     );
   }
 }
