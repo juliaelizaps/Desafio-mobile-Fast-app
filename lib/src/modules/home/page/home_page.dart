@@ -1,7 +1,6 @@
 import 'package:fast_location/src/shared/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-
 import '../../../shared/components/app_button.dart';
 import '../controller/home_controller.dart';
 
@@ -39,6 +38,7 @@ class _HomePageState extends State<HomePage> {
     errorRouteReactionDisposer();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,11 +50,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             // Título
             Padding(
-              padding: const EdgeInsets.only(top: 100.0, bottom: 70.0),
+              padding: const EdgeInsets.only(top: 60.0, bottom: 30.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Icon(Icons.compare_arrows_rounded, color: AppColors.buttonColor),
+                  Icon(Icons.multiple_stop_rounded, color: AppColors.buttonColor, size: 35,),
                   SizedBox(width: 10.0),
                   Text(
                     'Fast Location',
@@ -62,27 +62,32 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
                       color: AppColors.appTitleColor,
+
                     ),
                   ),
                 ],
               ),
             ),
-            // Seção 1: Resultado da busca (placeholder para futuras informações)
             Container(
+              height: 170.0,
               margin: const EdgeInsets.only(bottom: 16.0),
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(12.0),
+                borderRadius: BorderRadius.circular(10.0),
               ),
               child: Column(
                 children: const [
-                  Icon(Icons.directions, color: AppColors.buttonColor),
+                  Icon(
+                      Icons.directions,
+                      size: 70,
+                      color: AppColors.buttonColor),
                   SizedBox(height: 8.0),
                   Text(
-                    'Faça busca para localizar seu destino',
+                    'Faça uma busca para localizar seu destino.',
                     style: TextStyle(
                       fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
                       color: AppColors.appTextColor,
                     ),
                     textAlign: TextAlign.center,
@@ -90,13 +95,13 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            // Seção 2: Botão de localizar endereço
+            // localizar endereço
             Container(
               margin: EdgeInsets.only(bottom: 16.0),
               child: AppButton(
                 label: 'Localizar endereço',
                 action: () {
-                  // Espaço para adicionar funcionalidade
+                  // adicionar funcionalidades aqui depois
                 },
               ),
             ),
@@ -111,39 +116,64 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'Últimos endereços localizados',
                     style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.appTextColor,
+                      fontSize: 17.0,
+                      color: AppColors.appTitleColor,
                     ),
                   ),
                 ],
               ),
             ),
-            // Seção 3: Locais recentes (placeholder para histórico)
+            // Locais recentes
             Container(
+              height: 130.0,
               margin: EdgeInsets.only(bottom: 16.0),
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12.0),
               ),
-              child: const ListTile(
-                leading: Icon(Icons.location_off),
-                title: Text('Não há locais recentes'),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.location_off, color:AppColors.buttonColor, size: 40,),
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Não há locais recentes',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.appTextColor,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
-            // Seção 4: Histórico de endereços
+            // Histórico de endereços
             Container(
-              margin: EdgeInsets.only(bottom: 16.0),
+              margin: EdgeInsets.only(bottom: 17.0),
               child: AppButton(
                 label: 'Histórico de endereços',
                 action: () {
-                  // Espaço para adicionar funcionalidade
+                  // adicionar funcionalidades aqui depois
                 },
               ),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: AppColors.bottonColor,
+        shape: CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        child: Container(height: 50.0),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        backgroundColor: AppColors.buttonColor,
+        child: Icon(Icons.fork_right, color: Colors.white, size: 40),
       ),
     );
   }
