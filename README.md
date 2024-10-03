@@ -50,7 +50,7 @@ Este projeto é um aplicativo Flutter que permite ao usuário consultar informa�
 
 ## Captura de Tela
 
-!Página Home
+<img src="/assets/readme/front.png">
 
 ## Contribuição
 Sinta-se à vontade para contribuir com o projeto. Faça um fork do repositório, crie uma branch para suas alterações e envie um pull request.
