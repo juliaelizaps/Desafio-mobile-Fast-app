@@ -48,7 +48,7 @@ Este projeto é um aplicativo Flutter que permite ao usuário consultar informa�
 2. Instale as dependências com `flutter pub get`.
 3. Execute o aplicativo com `flutter run`.
 
-## Captura de Tela
+## Tela
 
 <img src="/assets/readme/front.png">
 
