@@ -4,6 +4,10 @@ Este projeto é um aplicativo Flutter que permite ao usuário consultar informa�
 
 ## Estrutura do Projeto
 
+## Tela
+
+<img src="/assets/readme/front.png">
+
 ### Diretório `shared` (lib/src/shared)
 - **colors**: Define as cores usadas no aplicativo.
 - **components**: Componentes compartilhados pelos diferentes módulos do aplicativo.
@@ -48,13 +52,5 @@ Este projeto é um aplicativo Flutter que permite ao usuário consultar informa�
 2. Instale as dependências com `flutter pub get`.
 3. Execute o aplicativo com `flutter run`.
 
-## Tela
 
-<img src="/assets/readme/front.png">
-
-## Contribuição
-Sinta-se à vontade para contribuir com o projeto. Faça um fork do repositório, crie uma branch para suas alterações e envie um pull request.
-
-## Licença
-Este projeto está licenciado sob a licença MIT.
 
