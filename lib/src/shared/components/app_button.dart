@@ -19,12 +19,12 @@ class AppButton extends StatelessWidget {
         onPressed: action,
         style: ElevatedButton.styleFrom(
 
-          primary: AppColors.buttonColor, // Cor do botão
-          onPrimary: Colors.white, // Cor do texto
-          minimumSize: Size(double.infinity, 50), // Tamanho mínimo do botão
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          )
+            primary: AppColors.buttonColor, // Cor do botão
+            onPrimary: Colors.white, // Cor do texto
+            minimumSize: Size(double.infinity, 50), // Tamanho mínimo do botão
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            )
         ),
         child: Text(label),
       ),
